@@ -1,0 +1,47 @@
+name: "サステナビリティ・循環経済"
+slug: "sustainability"
+active: true
+language: ja
+
+sources:
+  ja:
+    - name: "IDEAS FOR GOOD"
+      queries:
+        - '"サーキュラーエコノミー" OR "循環経済"'
+        - '"サステナビリティ" OR "持続可能"'
+    - name: "日経ESG"
+      queries:
+        - '"循環経済" OR "サステナブル" 最新'
+    - name: "オルタナ"
+      queries:
+        - '"サステナビリティ" OR "循環型社会"'
+  en:
+    - name: "GreenBiz"
+      queries:
+        - '"circular economy" OR "sustainability" business'
+    - name: "Fast Company"
+      queries:
+        - '"sustainable business" OR "circular design"'
+
+daily_target: 1-2
+article_length: standard
+
+editorial:
+  angle: "循環する経済の仕組みと、それを実現する具体的な取り組みの意義を伝える"
+  key_concepts:
+    - "サーキュラーエコノミーの3原則（廃棄をなくす/素材を循環させる/自然を再生する）"
+    - "リジェネラティブ（再生型）アプローチ"
+    - "プラネタリーバウンダリー"
+  forbidden_framing:
+    - "環境対ビジネスの二項対立として描かない"
+    - "グリーンウォッシングを助長しない"
+    - "戦争系・機械系・競争系メタファーを使わない"
+
+selection_weights:
+  timeliness: 0.25
+  reader_value: 0.3
+  concept_alignment: 0.25
+  uniqueness: 0.2
+
+category_page_title: "サステナビリティ・循環経済 ニュース"
+category_page_description: "サステナビリティ、サーキュラーエコノミー、循環経済に関する最新ニュースと解説"

@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => {
+    return data.status === 'published' || data.status === 'approved';
+  });
+  const verticals = [...new Set(articles.map((a) => a.data.vertical))];
+  return verticals.map((vertical) => ({
+    params: { vertical },
+    props: {
+      vertical,
+      articles: articles
+        .filter((a) => a.data.vertical === vertical)
+        .sort((a, b) => b.data.published_date.getTime() - a.data.published_date.getTime()),
+    },
+  }));
+}
+
+const { vertical, articles } = Astro.props;
+---
+
+<BaseLayout title={vertical} description={`${vertical} の最新ニュース`}>
+  <section class="vertical-header">
+    <a href="/" class="back-link">&larr; トップへ戻る</a>
+    <h1>{vertical}</h1>
+    <p>{articles.length}件の記事</p>
+  </section>
+
+  <div class="article-grid">
+    {articles.map((article) => (
+      <ArticleCard
+        id={article.id}
+        title={article.data.title}
+        vertical={article.data.vertical}
+        published_date={article.data.published_date}
+        summary={article.data.summary}
+        tags={article.data.tags}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .vertical-header {
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-header h1 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0 0.25rem;
+  }
+
+  .vertical-header p {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .article-grid {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

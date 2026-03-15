@@ -1,0 +1,166 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  vertical: string;
+  source_url: string;
+  source_name: string;
+  published_date: Date;
+  tags: string[];
+  summary: string;
+}
+
+const { title, vertical, source_url, source_name, published_date, tags, summary } = Astro.props;
+
+const formattedDate = published_date.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <a href={`/vertical/${vertical}`} class="vertical-tag">{vertical}</a>
+        <time datetime={published_date.toISOString()}>{formattedDate}</time>
+      </div>
+      <h1>{title}</h1>
+      <p class="article-summary">{summary}</p>
+    </header>
+
+    <div class="article-body">
+      <slot />
+    </div>
+
+    <footer class="article-footer">
+      <div class="article-source">
+        <span>Source:</span>
+        <a href={source_url} target="_blank" rel="noopener noreferrer">{source_name}</a>
+      </div>
+      {tags.length > 0 && (
+        <div class="article-tags">
+          {tags.map((tag) => (
+            <a href={`/tag/${tag}`} class="tag">#{tag}</a>
+          ))}
+        </div>
+      )}
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-tag {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .vertical-tag:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-summary {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .article-body {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .article-body :global(h2) {
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .article-body :global(h3) {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .article-body :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-body :global(a) {
+    text-decoration: underline;
+  }
+
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-source {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .article-source span {
+    margin-right: 0.5rem;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .tag:hover {
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+  }
+</style>

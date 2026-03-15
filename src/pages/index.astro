@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const allArticles = await getCollection('articles', ({ data }) => {
+  return data.status === 'published' || data.status === 'approved';
+});
+
+const articles = allArticles.sort(
+  (a, b) => b.data.published_date.getTime() - a.data.published_date.getTime()
+);
+
+const verticals = [...new Set(articles.map((a) => a.data.vertical))];
+---
+
+<BaseLayout title="トップ" description="最新ニュースをお届けします">
+  <section class="hero">
+    <h1>最新ニュース</h1>
+    <p>特定テーマの最新動向をAIが半自動的にキュレーション</p>
+  </section>
+
+  {verticals.length > 0 && (
+    <nav class="vertical-nav">
+      <a href="/" class="active">すべて</a>
+      {verticals.map((v) => (
+        <a href={`/vertical/${v}`}>{v}</a>
+      ))}
+    </nav>
+  )}
+
+  <div class="article-grid">
+    {articles.map((article) => (
+      <ArticleCard
+        id={article.id}
+        title={article.data.title}
+        vertical={article.data.vertical}
+        published_date={article.data.published_date}
+        summary={article.data.summary}
+        tags={article.data.tags}
+      />
+    ))}
+  </div>
+
+  {articles.length === 0 && (
+    <p class="empty-state">まだ記事がありません。</p>
+  )}
+</BaseLayout>
+
+<style>
+  .hero {
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .vertical-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .vertical-nav a {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-nav a:hover,
+  .vertical-nav a.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .article-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 3rem 0;
+  }
+</style>
