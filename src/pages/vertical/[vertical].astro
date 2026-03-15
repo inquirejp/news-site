@@ -20,11 +20,12 @@ export async function getStaticPaths() {
 }
 
 const { vertical, articles } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <BaseLayout title={vertical} description={`${vertical} の最新ニュース`}>
   <section class="vertical-header">
-    <a href="/" class="back-link">&larr; トップへ戻る</a>
+    <a href={base} class="back-link">&larr; トップへ戻る</a>
     <h1>{vertical}</h1>
     <p>{articles.length}件の記事</p>
   </section>

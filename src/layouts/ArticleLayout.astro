@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { title, vertical, source_url, source_name, published_date, tags, summary } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const formattedDate = published_date.toLocaleDateString('ja-JP', {
   year: 'numeric',
@@ -24,7 +25,7 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
   <article class="article">
     <header class="article-header">
       <div class="article-meta">
-        <a href={`/vertical/${vertical}`} class="vertical-tag">{vertical}</a>
+        <a href={`${base}vertical/${vertical}`} class="vertical-tag">{vertical}</a>
         <time datetime={published_date.toISOString()}>{formattedDate}</time>
       </div>
       <h1>{title}</h1>
@@ -43,7 +44,7 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
       {tags.length > 0 && (
         <div class="article-tags">
           {tags.map((tag) => (
-            <a href={`/tag/${tag}`} class="tag">#{tag}</a>
+            <a href={`${base}tag/${tag}`} class="tag">#{tag}</a>
           ))}
         </div>
       )}

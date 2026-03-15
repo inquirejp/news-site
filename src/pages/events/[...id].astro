@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { event } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const { Content } = await render(event);
 
 const formattedEventDate = event.data.event_date.toLocaleDateString('ja-JP', {
@@ -39,7 +40,7 @@ const venueTypeLabel = {
   <article class="article">
     <header class="article-header">
       <div class="article-meta">
-        <a href={`/vertical/${event.data.vertical}`} class="vertical-tag">{event.data.vertical}</a>
+        <a href={`${base}vertical/${event.data.vertical}`} class="vertical-tag">{event.data.vertical}</a>
         <span class={`venue-badge venue-${event.data.venue_type}`}>{venueTypeLabel}</span>
         <time datetime={event.data.published_date.toISOString()}>{formattedPublishedDate}</time>
       </div>
@@ -83,7 +84,7 @@ const venueTypeLabel = {
       {event.data.tags.length > 0 && (
         <div class="article-tags">
           {event.data.tags.map((tag) => (
-            <a href={`/tag/${tag}`} class="tag">#{tag}</a>
+            <a href={`${base}tag/${tag}`} class="tag">#{tag}</a>
           ))}
         </div>
       )}

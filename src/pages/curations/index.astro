@@ -12,6 +12,7 @@ const curations = allCurations.sort(
 );
 
 const verticals = [...new Set(curations.map((c) => c.data.vertical))];
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <BaseLayout title="キュレーション" description="注目ニュースのキュレーション。RSSフィードから収集した記事に編集的な文脈を添えてお届けします。">
@@ -22,9 +23,9 @@ const verticals = [...new Set(curations.map((c) => c.data.vertical))];
 
   {verticals.length > 0 && (
     <nav class="vertical-nav">
-      <a href="/curations/" class="active">すべて</a>
+      <a href={`${base}curations/`} class="active">すべて</a>
       {verticals.map((v) => (
-        <a href={`/vertical/${v}`}>{v}</a>
+        <a href={`${base}vertical/${v}`}>{v}</a>
       ))}
     </nav>
   )}

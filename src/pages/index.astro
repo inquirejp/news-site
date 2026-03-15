@@ -36,6 +36,7 @@ const tagCounts = new Map<string, number>();
   }
 });
 const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <BaseLayout title="トップ" description="最新ニュースをお届けします">
@@ -53,7 +54,7 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
   <section id="news" class="section-block first">
     <div class="section-header">
       <h2>ニュース</h2>
-      <a href="/" class="view-all">すべて見る →</a>
+      <a href={base} class="view-all">すべて見る →</a>
     </div>
     <div class="grid">
       {articles.map((article) => (
@@ -75,7 +76,7 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
   <section id="events" class="section-block">
     <div class="section-header">
       <h2>イベント</h2>
-      <a href="/events/" class="view-all">すべて見る →</a>
+      <a href={`${base}events/`} class="view-all">すべて見る →</a>
     </div>
     {upcomingEvents.length > 0 ? (
       <div class="grid">
@@ -105,7 +106,7 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
   <section id="curations" class="section-block">
     <div class="section-header">
       <h2>キュレーション</h2>
-      <a href="/curations/" class="view-all">すべて見る →</a>
+      <a href={`${base}curations/`} class="view-all">すべて見る →</a>
     </div>
     {latestCurations.length > 0 ? (
       <div class="grid">
@@ -133,7 +134,7 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
       <h2>タグ一覧</h2>
       <div class="tags-cloud">
         {sortedTags.map(([tag, count]) => (
-          <a href={`/tag/${tag}`} class="tag-item">
+          <a href={`${base}tag/${tag}`} class="tag-item">
             #{tag} <span class="tag-count">{count}</span>
           </a>
         ))}

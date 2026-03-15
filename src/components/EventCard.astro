@@ -36,6 +36,7 @@ const formattedEventDate = event_date.toLocaleDateString('ja-JP', {
   weekday: 'short',
 });
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const venueTypeLabel = {
   online: 'オンライン',
   offline: 'オフライン',
@@ -45,11 +46,11 @@ const venueTypeLabel = {
 
 <article class="event-card">
   <div class="event-card-meta">
-    <a href={`/vertical/${vertical}`} class="vertical-tag">{vertical}</a>
+    <a href={`${base}vertical/${vertical}`} class="vertical-tag">{vertical}</a>
     <span class={`venue-badge venue-${venue_type}`}>{venueTypeLabel}</span>
   </div>
   <h2 class="event-card-title">
-    <a href={`/events/${id}`}>{title}</a>
+    <a href={`${base}events/${id}`}>{title}</a>
   </h2>
   <p class="event-card-summary">{summary}</p>
   <div class="event-info">
