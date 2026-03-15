@@ -1,0 +1,60 @@
+---
+const substackUrl = 'https://inquireletter.substack.com/';
+---
+
+<section class="newsletter-box">
+  <div class="newsletter-inner">
+    <h3 class="newsletter-title">inquire Letter</h3>
+    <p class="newsletter-description">
+      善い経済生態系にまつわるニュースや論考を、週1回お届けします。
+    </p>
+    <a href={substackUrl} target="_blank" rel="noopener noreferrer" class="newsletter-btn">
+      購読する（無料）
+    </a>
+  </div>
+</section>
+
+<style>
+  .newsletter-box {
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+    background: var(--color-header-bg);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .newsletter-inner {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-title {
+    font-size: 1.25rem;
+    color: var(--color-header-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .newsletter-btn {
+    display: inline-block;
+    padding: 0.6rem 2rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .newsletter-btn:hover {
+    background: var(--color-accent-hover);
+    text-decoration: none;
+    color: #fff;
+  }
+</style>

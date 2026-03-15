@@ -1,7 +1,7 @@
 ---
 title: "「善い経済」の実践知が集まる場——ソーシャルイノベーションフォーラム2026"
 vertical: "zebra-bcorp"
-source_url: "https://peatix.com/event/example-social-innovation"
+source_url: "https://peatix.com/"
 source_name: "Peatix"
 published_date: 2026-03-15
 status: "approved"
@@ -13,7 +13,7 @@ event_date: 2026-04-15
 venue_name: "東京ミッドタウン カンファレンスホール"
 venue_type: "hybrid"
 organizer: "一般社団法人ソーシャルイノベーション推進機構"
-registration_url: "https://peatix.com/event/example-social-innovation"
+registration_url: "https://peatix.com/"
 fee: "一般3,000円 / 学生無料"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "B Corp認証の新基準が2027年に施行——企業に求められる「透明性」の水準が変わる"
 vertical: "zebra-bcorp"
-source_url: "https://example.com/bcorp-news"
+source_url: "https://www.bcorporation.net/en-us/news/"
 source_name: "B The Change"
 published_date: 2026-03-15
 status: "published"

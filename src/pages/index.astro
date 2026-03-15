@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import EventCard from '../components/EventCard.astro';
 import CurationCard from '../components/CurationCard.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
 
 const allArticles = await getCollection('articles', ({ data }) => {
   return data.status === 'published' || data.status === 'approved';
@@ -65,6 +66,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           published_date={article.data.published_date}
           summary={article.data.summary}
           tags={article.data.tags}
+          source_name={article.data.source_name}
         />
       ))}
     </div>
@@ -141,6 +143,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </div>
     </section>
   )}
+
+  <NewsletterBox />
 </BaseLayout>
 
 <style>

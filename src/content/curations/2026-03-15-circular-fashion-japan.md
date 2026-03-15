@@ -1,7 +1,7 @@
 ---
 title: "日本のファッション企業5社が衣料品回収の共同プラットフォームを立ち上げ"
 vertical: "sustainability"
-source_url: "https://example.com/circular-fashion-japan"
+source_url: "https://prtimes.jp/"
 source_name: "PR TIMES"
 published_date: 2026-03-15
 status: "published"

@@ -1,7 +1,7 @@
 ---
 title: "パタゴニア、サプライチェーン全体の労働条件データを初公開"
 vertical: "zebra-bcorp"
-source_url: "https://example.com/patagonia-supply-chain"
+source_url: "https://www.greenbiz.com/article/supply-chain-transparency"
 source_name: "GreenBiz"
 published_date: 2026-03-15
 status: "published"
