@@ -1,0 +1,42 @@
+name: "テクノロジー × 社会課題"
+slug: "tech-society"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "テクノロジー 社会課題"
+      - "シビックテック"
+      - "AI 倫理"
+      - "テック フォーグッド"
+  - platform: "connpass"
+    queries:
+      - "シビックテック"
+      - "AI 社会"
+      - "テクノロジー 社会実装"
+  - platform: "PR TIMES"
+    queries:
+      - '"シビックテック" OR "テック・フォー・グッド" イベント'
+      - '"AI倫理" OR "責任あるAI" セミナー OR カンファレンス'
+  - platform: "WebSearch"
+    queries:
+      - '"シビックテック" イベント 2026'
+      - '"AI 倫理" OR "責任あるAI" カンファレンス 2026'
+      - '"テクノロジー" "社会課題" フォーラム 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "テクノロジーが社会課題の解決や善い経済生態系の構築にどう貢献しうるかを伝える"
+  key_concepts:
+    - "テクノロジーの社会実装"
+    - "シビックテックとオープンガバナンス"
+    - "AI・データと公共性"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "テクノロジー万能論"
+    - "戦争系・機械系・競争系メタファー"

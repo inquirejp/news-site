@@ -25,6 +25,9 @@ const siteName = 'News Site'; // TODO: サイト名確定後に変更
       <div class="container">
         <a href="/" class="site-title">{siteName}</a>
         <nav class="site-nav">
+          <a href="/">ニュース</a>
+          <a href="/events/">イベント</a>
+          <a href="/curations/">キュレーション</a>
           <slot name="nav" />
         </nav>
       </div>
@@ -42,14 +45,22 @@ const siteName = 'News Site'; // TODO: サイト名確定後に変更
 
 <style is:global>
   :root {
-    --color-bg: #fafafa;
-    --color-text: #1a1a1a;
+    /* inquire.jp カラーパターン準拠 */
+    --color-bg: #f8ede1;
+    --color-text: #111;
     --color-text-muted: #666;
-    --color-accent: #0087AE;
-    --color-border: #e5e5e5;
+    --color-accent: #c36339;
+    --color-accent-hover: #a8522e;
+    --color-border: #eee;
     --color-card-bg: #fff;
+    --color-header-bg: #252525;
+    --color-header-text: #fff;
+    --color-footer-bg: #252525;
+    --color-footer-text: #fff;
+    --color-tag-bg: #32373c;
     --max-width: 960px;
-    --font-sans: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    --font-sans: 'Lato', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Helvetica Neue, Roboto, Arial, sans-serif;
+    --font-body: 'Ubuntu', 'Hiragino Kaku Gothic ProN', Meiryo, Helvetica Neue, Roboto, Arial, sans-serif;
   }
 
   * {
@@ -59,11 +70,15 @@ const siteName = 'News Site'; // TODO: サイト名確定後に変更
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     background: var(--color-bg);
     color: var(--color-text);
     line-height: 1.8;
     font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-sans);
   }
 
   .container {
@@ -78,15 +93,15 @@ const siteName = 'News Site'; // TODO: サイト名確定後に変更
   }
 
   a:hover {
+    color: var(--color-accent-hover);
     text-decoration: underline;
   }
 </style>
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--color-border);
-    padding: 1rem 0;
-    background: var(--color-card-bg);
+    padding: 0.875rem 0;
+    background: var(--color-header-bg);
   }
 
   .site-header .container {
@@ -98,18 +113,36 @@ const siteName = 'News Site'; // TODO: サイト名確定後に変更
   .site-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--color-header-text);
   }
 
   .site-title:hover {
     text-decoration: none;
+    color: var(--color-accent);
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .site-nav a {
+    color: var(--color-header-text);
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .site-nav a:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: var(--color-accent);
   }
 
   .site-footer {
-    border-top: 1px solid var(--color-border);
     padding: 2rem 0;
     margin-top: 3rem;
-    color: var(--color-text-muted);
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
     font-size: 0.875rem;
   }
 

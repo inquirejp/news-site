@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import EventCard from '../components/EventCard.astro';
+import CurationCard from '../components/CurationCard.astro';
 
 const allArticles = await getCollection('articles', ({ data }) => {
   return data.status === 'published' || data.status === 'approved';
@@ -11,7 +13,29 @@ const articles = allArticles.sort(
   (a, b) => b.data.published_date.getTime() - a.data.published_date.getTime()
 );
 
-const verticals = [...new Set(articles.map((a) => a.data.vertical))];
+const now = new Date();
+const upcomingEvents = (await getCollection('events', ({ data }) => {
+  return (data.status === 'published' || data.status === 'approved') && data.event_date >= now;
+}))
+  .sort((a, b) => a.data.event_date.getTime() - b.data.event_date.getTime())
+  .slice(0, 3);
+
+const latestCurations = (await getCollection('curations', ({ data }) => {
+  return data.status === 'published' || data.status === 'approved';
+}))
+  .sort((a, b) => b.data.published_date.getTime() - a.data.published_date.getTime())
+  .slice(0, 5);
+
+// 全コンテンツからタグを集計
+const tagCounts = new Map<string, number>();
+[...allArticles, ...await getCollection('events'), ...await getCollection('curations')].forEach((item) => {
+  if (item.data.tags) {
+    item.data.tags.forEach((tag: string) => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
 ---
 
 <BaseLayout title="トップ" description="最新ニュースをお届けします">
@@ -20,36 +44,107 @@ const verticals = [...new Set(articles.map((a) => a.data.vertical))];
     <p>特定テーマの最新動向をAIが半自動的にキュレーション</p>
   </section>
 
-  {verticals.length > 0 && (
-    <nav class="vertical-nav">
-      <a href="/" class="active">すべて</a>
-      {verticals.map((v) => (
-        <a href={`/vertical/${v}`}>{v}</a>
+  <nav class="section-nav">
+    <a href="#news" class="active">ニュース</a>
+    <a href="#events">イベント</a>
+    <a href="#curations">キュレーション</a>
+  </nav>
+
+  <section id="news" class="section-block first">
+    <div class="section-header">
+      <h2>ニュース</h2>
+      <a href="/" class="view-all">すべて見る →</a>
+    </div>
+    <div class="grid">
+      {articles.map((article) => (
+        <ArticleCard
+          id={article.id}
+          title={article.data.title}
+          vertical={article.data.vertical}
+          published_date={article.data.published_date}
+          summary={article.data.summary}
+          tags={article.data.tags}
+        />
       ))}
-    </nav>
-  )}
+    </div>
+    {articles.length === 0 && (
+      <p class="empty-state">まだ記事がありません。</p>
+    )}
+  </section>
 
-  <div class="article-grid">
-    {articles.map((article) => (
-      <ArticleCard
-        id={article.id}
-        title={article.data.title}
-        vertical={article.data.vertical}
-        published_date={article.data.published_date}
-        summary={article.data.summary}
-        tags={article.data.tags}
-      />
-    ))}
-  </div>
+  <section id="events" class="section-block">
+    <div class="section-header">
+      <h2>イベント</h2>
+      <a href="/events/" class="view-all">すべて見る →</a>
+    </div>
+    {upcomingEvents.length > 0 ? (
+      <div class="grid">
+        {upcomingEvents.map((event) => (
+          <EventCard
+            id={event.id}
+            title={event.data.title}
+            vertical={event.data.vertical}
+            published_date={event.data.published_date}
+            summary={event.data.summary}
+            tags={event.data.tags}
+            event_name={event.data.event_name}
+            event_date={event.data.event_date}
+            venue_name={event.data.venue_name}
+            venue_type={event.data.venue_type}
+            organizer={event.data.organizer}
+            registration_url={event.data.registration_url}
+            fee={event.data.fee}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">現在予定されているイベントはありません。</p>
+    )}
+  </section>
 
-  {articles.length === 0 && (
-    <p class="empty-state">まだ記事がありません。</p>
+  <section id="curations" class="section-block">
+    <div class="section-header">
+      <h2>キュレーション</h2>
+      <a href="/curations/" class="view-all">すべて見る →</a>
+    </div>
+    {latestCurations.length > 0 ? (
+      <div class="grid">
+        {latestCurations.map((curation) => (
+          <CurationCard
+            id={curation.id}
+            title={curation.data.title}
+            vertical={curation.data.vertical}
+            source_url={curation.data.source_url}
+            source_name={curation.data.source_name}
+            published_date={curation.data.published_date}
+            summary={curation.data.summary}
+            editorial_comment={curation.data.editorial_comment}
+            tags={curation.data.tags}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">まだキュレーション記事がありません。</p>
+    )}
+  </section>
+
+  {sortedTags.length > 0 && (
+    <section class="section-block tags-section">
+      <h2>タグ一覧</h2>
+      <div class="tags-cloud">
+        {sortedTags.map(([tag, count]) => (
+          <a href={`/tag/${tag}`} class="tag-item">
+            #{tag} <span class="tag-count">{count}</span>
+          </a>
+        ))}
+      </div>
+    </section>
   )}
 </BaseLayout>
 
 <style>
   .hero {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero h1 {
@@ -62,16 +157,15 @@ const verticals = [...new Set(articles.map((a) => a.data.vertical))];
     font-size: 0.9rem;
   }
 
-  .vertical-nav {
+  .section-nav {
     display: flex;
-    flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .vertical-nav a {
+  .section-nav a {
     font-size: 0.85rem;
     padding: 0.3rem 0.75rem;
     border: 1px solid var(--color-border);
@@ -79,15 +173,43 @@ const verticals = [...new Set(articles.map((a) => a.data.vertical))];
     color: var(--color-text-muted);
   }
 
-  .vertical-nav a:hover,
-  .vertical-nav a.active {
+  .section-nav a:hover,
+  .section-nav a.active {
     background: var(--color-accent);
     color: #fff;
     border-color: var(--color-accent);
     text-decoration: none;
   }
 
-  .article-grid {
+  .section-block {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-border);
+  }
+
+  .section-block.first {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .view-all {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+  }
+
+  .grid {
     display: grid;
     gap: 1rem;
   }
@@ -95,6 +217,39 @@ const verticals = [...new Set(articles.map((a) => a.data.vertical))];
   .empty-state {
     text-align: center;
     color: var(--color-text-muted);
-    padding: 3rem 0;
+    padding: 2rem 0;
+  }
+
+  .tags-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag-item {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text);
+    background: var(--color-card-bg);
+    transition: all 0.15s;
+  }
+
+  .tag-item:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .tag-count {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin-left: 0.15rem;
   }
 </style>

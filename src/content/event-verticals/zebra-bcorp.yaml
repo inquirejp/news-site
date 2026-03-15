@@ -1,0 +1,42 @@
+name: "ゼブラ企業・B Corp・ソーシャルイノベーション"
+slug: "zebra-bcorp"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "ゼブラ企業"
+      - "B Corp"
+      - "ソーシャルビジネス"
+      - "社会的企業"
+  - platform: "connpass"
+    queries:
+      - "ソーシャルイノベーション"
+      - "社会起業"
+      - "インパクト ビジネス"
+  - platform: "PR TIMES"
+    queries:
+      - '"ゼブラ企業" イベント OR セミナー OR カンファレンス'
+      - '"B Corp" イベント OR フォーラム'
+  - platform: "WebSearch"
+    queries:
+      - '"ゼブラ企業" イベント 2026'
+      - '"B Corp" セミナー カンファレンス 2026'
+      - '"ソーシャルイノベーション" フォーラム 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "善い経済生態系の観点から、このイベントがなぜ今注目に値するかを伝える"
+  key_concepts:
+    - "ベタービジネス4次元"
+    - "ゼブラ企業のシマ模様思考"
+    - "B Corp認証の意義と広がり"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "ユニコーン企業との競争として描かない"
+    - "戦争系・機械系・競争系メタファー"

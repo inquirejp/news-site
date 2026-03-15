@@ -3,12 +3,15 @@ interface Props {
   id: string;
   title: string;
   vertical: string;
+  source_url: string;
+  source_name: string;
   published_date: Date;
   summary: string;
+  editorial_comment: string;
   tags: string[];
 }
 
-const { id, title, vertical, published_date, summary, tags } = Astro.props;
+const { id, title, vertical, source_url, source_name, published_date, summary, editorial_comment, tags } = Astro.props;
 
 const formattedDate = published_date.toLocaleDateString('ja-JP', {
   year: 'numeric',
@@ -17,15 +20,24 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
 });
 ---
 
-<article class="card">
+<article class="curation-card">
   <div class="card-meta">
     <a href={`/vertical/${vertical}`} class="vertical-tag">{vertical}</a>
     <time datetime={published_date.toISOString()}>{formattedDate}</time>
+    <span class="source-badge">{source_name}</span>
   </div>
+
   <h2 class="card-title">
-    <a href={`/articles/${id}`}>{title}</a>
+    <a href={source_url} target="_blank" rel="noopener noreferrer">{title}<span class="external-icon"> ↗</span></a>
   </h2>
+
   <p class="card-summary">{summary}</p>
+
+  <div class="editorial">
+    <span class="editorial-label">編集メモ</span>
+    <p>{editorial_comment}</p>
+  </div>
+
   {tags.length > 0 && (
     <div class="card-tags">
       {tags.map((tag) => (
@@ -36,15 +48,16 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
 </article>
 
 <style>
-  .card {
+  .curation-card {
     background: var(--color-card-bg);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 6px 6px 0;
     padding: 1.25rem;
     transition: box-shadow 0.2s;
   }
 
-  .card:hover {
+  .curation-card:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
@@ -71,8 +84,16 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
     opacity: 0.85;
   }
 
+  .source-badge {
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.65rem;
+  }
+
   .card-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.5;
     margin-bottom: 0.5rem;
   }
@@ -86,17 +107,47 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
     text-decoration: none;
   }
 
+  .external-icon {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
   .card-summary {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
     line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .editorial {
+    background: rgba(195, 99, 57, 0.06);
+    border-radius: 4px;
+    padding: 0.75rem;
     margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .editorial-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .editorial p {
+    margin: 0;
   }
 
   .card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 0.5rem;
   }
 
   .tag {

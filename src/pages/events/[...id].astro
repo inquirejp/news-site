@@ -1,0 +1,272 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events', ({ data }) => {
+    return data.status === 'published' || data.status === 'approved';
+  });
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+
+const formattedEventDate = event.data.event_date.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  weekday: 'short',
+});
+
+const formattedPublishedDate = event.data.published_date.toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const venueTypeLabel = {
+  online: 'オンライン',
+  offline: 'オフライン',
+  hybrid: 'ハイブリッド',
+}[event.data.venue_type];
+---
+
+<BaseLayout title={event.data.title} description={event.data.summary}>
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <a href={`/vertical/${event.data.vertical}`} class="vertical-tag">{event.data.vertical}</a>
+        <span class={`venue-badge venue-${event.data.venue_type}`}>{venueTypeLabel}</span>
+        <time datetime={event.data.published_date.toISOString()}>{formattedPublishedDate}</time>
+      </div>
+      <h1>{event.data.title}</h1>
+      <p class="article-summary">{event.data.summary}</p>
+
+      <div class="event-info-box">
+        <div class="event-info-row">
+          <span class="label">日時</span>
+          <span>{formattedEventDate}</span>
+        </div>
+        <div class="event-info-row">
+          <span class="label">会場</span>
+          <span>{event.data.venue_name}</span>
+        </div>
+        <div class="event-info-row">
+          <span class="label">主催</span>
+          <span>{event.data.organizer}</span>
+        </div>
+        {event.data.fee && (
+          <div class="event-info-row">
+            <span class="label">参加費</span>
+            <span>{event.data.fee}</span>
+          </div>
+        )}
+        <a href={event.data.registration_url} target="_blank" rel="noopener noreferrer" class="register-btn">
+          イベントに申し込む
+        </a>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <Content />
+    </div>
+
+    <footer class="article-footer">
+      <div class="article-source">
+        <span>Source:</span>
+        <a href={event.data.source_url} target="_blank" rel="noopener noreferrer">{event.data.source_name}</a>
+      </div>
+      {event.data.tags.length > 0 && (
+        <div class="article-tags">
+          {event.data.tags.map((tag) => (
+            <a href={`/tag/${tag}`} class="tag">#{tag}</a>
+          ))}
+        </div>
+      )}
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-tag {
+    background: var(--color-tag-bg);
+    color: #fff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .vertical-tag:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .venue-badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .venue-online {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .venue-offline {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .venue-hybrid {
+    background: #fff3e0;
+    color: #e65100;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-summary {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .event-info-box {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+
+  .event-info-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .event-info-row:last-of-type {
+    border-bottom: none;
+  }
+
+  .event-info-row .label {
+    color: var(--color-text-muted);
+    min-width: 4rem;
+    font-weight: 600;
+  }
+
+  .register-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .register-btn:hover {
+    background: var(--color-accent-hover);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .article-body {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .article-body :global(h2) {
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .article-body :global(h3) {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .article-body :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-body :global(a) {
+    text-decoration: underline;
+  }
+
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-source {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .article-source span {
+    margin-right: 0.5rem;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .tag:hover {
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
+  }
+</style>

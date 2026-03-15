@@ -1,0 +1,41 @@
+name: "インパクト投資・ESG"
+slug: "impact-investing"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "インパクト投資"
+      - "ESG投資"
+      - "社会的インパクト"
+  - platform: "connpass"
+    queries:
+      - "インパクト投資"
+      - "ESG"
+      - "ソーシャルファイナンス"
+  - platform: "PR TIMES"
+    queries:
+      - '"インパクト投資" イベント OR セミナー OR カンファレンス'
+      - '"ESG" フォーラム OR シンポジウム'
+  - platform: "WebSearch"
+    queries:
+      - '"インパクト投資" イベント セミナー 2026'
+      - '"ESG" カンファレンス 日本 2026'
+      - '"ソーシャルファイナンス" フォーラム 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "資本の流れが社会・環境にどう影響するか、善い経済生態系の資金循環という視点で伝える"
+  key_concepts:
+    - "インパクト測定と管理"
+    - "ブレンデッドファイナンス"
+    - "ESGと長期的価値創造"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "投資リターンのみの強調"
+    - "戦争系・機械系・競争系メタファー"

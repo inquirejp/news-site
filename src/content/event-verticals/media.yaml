@@ -1,0 +1,40 @@
+name: "メディア・ジャーナリズム"
+slug: "media"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "メディア ジャーナリズム"
+      - "編集 メディア"
+      - "ローカルメディア"
+  - platform: "connpass"
+    queries:
+      - "メディア運営"
+      - "コンテンツ 編集"
+      - "ジャーナリズム"
+  - platform: "PR TIMES"
+    queries:
+      - '"メディア" OR "ジャーナリズム" イベント OR セミナー'
+      - '"編集" OR "メディアリテラシー" フォーラム'
+  - platform: "WebSearch"
+    queries:
+      - '"メディア" OR "ジャーナリズム" イベント セミナー 2026'
+      - '"ローカルメディア" OR "オウンドメディア" カンファレンス 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "情報生態系の健全性と多様性を育むメディアの役割という視点で紹介する"
+  key_concepts:
+    - "メディアの公共性"
+    - "情報生態系の多様性"
+    - "編集の力と責任"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "マスメディア批判一辺倒"
+    - "戦争系・機械系・競争系メタファー"

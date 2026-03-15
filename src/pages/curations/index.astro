@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CurationCard from '../../components/CurationCard.astro';
+
+const allCurations = await getCollection('curations', ({ data }) => {
+  return data.status === 'published' || data.status === 'approved';
+});
+
+const curations = allCurations.sort(
+  (a, b) => b.data.published_date.getTime() - a.data.published_date.getTime()
+);
+
+const verticals = [...new Set(curations.map((c) => c.data.vertical))];
+---
+
+<BaseLayout title="キュレーション" description="注目ニュースのキュレーション。RSSフィードから収集した記事に編集的な文脈を添えてお届けします。">
+  <section class="page-header">
+    <h1>キュレーション</h1>
+    <p>注目ニュースを編集的な視点でピックアップ</p>
+  </section>
+
+  {verticals.length > 0 && (
+    <nav class="vertical-nav">
+      <a href="/curations/" class="active">すべて</a>
+      {verticals.map((v) => (
+        <a href={`/vertical/${v}`}>{v}</a>
+      ))}
+    </nav>
+  )}
+
+  <div class="curation-list">
+    {curations.map((curation) => (
+      <CurationCard
+        id={curation.id}
+        title={curation.data.title}
+        vertical={curation.data.vertical}
+        source_url={curation.data.source_url}
+        source_name={curation.data.source_name}
+        published_date={curation.data.published_date}
+        summary={curation.data.summary}
+        editorial_comment={curation.data.editorial_comment}
+        tags={curation.data.tags}
+      />
+    ))}
+  </div>
+
+  {curations.length === 0 && (
+    <p class="empty-state">まだキュレーション記事がありません。</p>
+  )}
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .vertical-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .vertical-nav a {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-nav a:hover,
+  .vertical-nav a.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .curation-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 3rem 0;
+  }
+</style>

@@ -1,0 +1,42 @@
+name: "コミュニティデザイン・地域活性"
+slug: "community"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "コミュニティデザイン"
+      - "地域活性"
+      - "まちづくり"
+      - "ローカルビジネス"
+  - platform: "connpass"
+    queries:
+      - "地域 コミュニティ"
+      - "まちづくり"
+      - "ローカル 起業"
+  - platform: "PR TIMES"
+    queries:
+      - '"コミュニティデザイン" イベント OR ワークショップ'
+      - '"地域活性" フォーラム OR セミナー'
+  - platform: "WebSearch"
+    queries:
+      - '"コミュニティデザイン" イベント 2026'
+      - '"地域活性" OR "まちづくり" フォーラム 2026'
+      - '"関係人口" イベント セミナー 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "地域から生まれる新しい経済のかたち、コミュニティが育むエコシステムとして紹介する"
+  key_concepts:
+    - "関係人口と共創"
+    - "ローカルエコノミー"
+    - "コモンズの再構築"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "都市vs地方の対立構図"
+    - "戦争系・機械系・競争系メタファー"

@@ -1,0 +1,41 @@
+name: "サステナビリティ・循環経済"
+slug: "sustainability"
+active: true
+
+event_sources:
+  - platform: "Peatix"
+    queries:
+      - "サステナビリティ"
+      - "循環経済"
+      - "サーキュラーエコノミー"
+      - "脱炭素"
+  - platform: "connpass"
+    queries:
+      - "サステナブル"
+      - "環境 ビジネス"
+      - "SDGs"
+  - platform: "PR TIMES"
+    queries:
+      - '"サーキュラーエコノミー" イベント OR セミナー'
+      - '"サステナビリティ" カンファレンス OR フォーラム'
+  - platform: "WebSearch"
+    queries:
+      - '"循環経済" イベント セミナー 2026'
+      - '"サステナビリティ" カンファレンス 日本 2026'
+
+selection_weights:
+  timeliness: 0.2
+  reader_value: 0.3
+  concept_alignment: 0.3
+  uniqueness: 0.2
+
+editorial:
+  angle: "循環型の経済モデルや環境配慮型ビジネスの実践知が共有される場として紹介する"
+  key_concepts:
+    - "サーキュラーエコノミーの実践"
+    - "リジェネラティブな経済"
+    - "脱炭素と事業の両立"
+  forbidden_framing:
+    - "過度な参加促進（必見、参加必須等）"
+    - "環境問題の恐怖訴求"
+    - "戦争系・機械系・競争系メタファー"

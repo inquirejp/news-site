@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventCard from '../../components/EventCard.astro';
+
+const now = new Date();
+
+const allEvents = await getCollection('events', ({ data }) => {
+  return (data.status === 'published' || data.status === 'approved') && data.event_date >= now;
+});
+
+const events = allEvents.sort(
+  (a, b) => a.data.event_date.getTime() - b.data.event_date.getTime()
+);
+
+const verticals = [...new Set(events.map((e) => e.data.vertical))];
+---
+
+<BaseLayout title="イベント" description="善い経済生態系に関連するイベント情報をキュレーション">
+  <section class="hero">
+    <h1>イベント</h1>
+    <p>善い経済生態系に関連するイベント情報をキュレーションしてお届けします</p>
+  </section>
+
+  {verticals.length > 0 && (
+    <nav class="vertical-nav">
+      <a href="/events/" class="active">すべて</a>
+      {verticals.map((v) => (
+        <a href={`/vertical/${v}`}>{v}</a>
+      ))}
+    </nav>
+  )}
+
+  <div class="event-grid">
+    {events.map((event) => (
+      <EventCard
+        id={event.id}
+        title={event.data.title}
+        vertical={event.data.vertical}
+        published_date={event.data.published_date}
+        summary={event.data.summary}
+        tags={event.data.tags}
+        event_name={event.data.event_name}
+        event_date={event.data.event_date}
+        venue_name={event.data.venue_name}
+        venue_type={event.data.venue_type}
+        organizer={event.data.organizer}
+        registration_url={event.data.registration_url}
+        fee={event.data.fee}
+      />
+    ))}
+  </div>
+
+  {events.length === 0 && (
+    <p class="empty-state">現在、掲載中のイベントはありません。</p>
+  )}
+</BaseLayout>
+
+<style>
+  .hero {
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .vertical-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .vertical-nav a {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    color: var(--color-text-muted);
+  }
+
+  .vertical-nav a:hover,
+  .vertical-nav a.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .event-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 3rem 0;
+  }
+</style>
