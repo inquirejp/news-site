@@ -38,10 +38,9 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
     </div>
 
     <footer class="article-footer">
-      <div class="article-source">
-        <span>Source:</span>
-        <a href={source_url} target="_blank" rel="noopener noreferrer">{source_name}</a>
-      </div>
+      <a href={source_url} target="_blank" rel="noopener noreferrer" class="source-link-btn">
+        元の記事を読む（{source_name}） ↗
+      </a>
       {tags.length > 0 && (
         <div class="article-tags">
           {tags.map((tag) => (
@@ -137,14 +136,22 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
     border-top: 1px solid var(--color-border);
   }
 
-  .article-source {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1rem;
+  .source-link-btn {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    transition: background 0.15s;
   }
 
-  .article-source span {
-    margin-right: 0.5rem;
+  .source-link-btn:hover {
+    background: var(--color-accent-hover);
+    text-decoration: none;
+    color: #fff;
   }
 
   .article-tags {

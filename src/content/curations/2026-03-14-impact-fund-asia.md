@@ -1,7 +1,7 @@
 ---
 title: "アジア最大のインパクト投資ファンドが500億円規模で組成完了"
 vertical: "zebra-bcorp"
-source_url: "https://impactalpha.com/"
+source_url: "https://impactalpha.com/the-brief-impact-investing-in-asia-pacific/"
 source_name: "Impact Alpha"
 published_date: 2026-03-14
 status: "published"

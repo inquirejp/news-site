@@ -1,7 +1,7 @@
 ---
 title: "サーキュラーエコノミーEXPO 2026——循環型ビジネスの最新事例が集結"
 vertical: "sustainability"
-source_url: "https://www.reedexpo.co.jp/"
+source_url: "https://www.rxjapan.jp/sus/tokyo/ja-jp.html"
 source_name: "RX Japan"
 published_date: 2026-03-12
 status: "published"
@@ -14,7 +14,7 @@ event_date_end: 2026-04-21
 venue_name: "東京ビッグサイト 西展示棟"
 venue_type: "offline"
 organizer: "RX Japan株式会社"
-registration_url: "https://www.reedexpo.co.jp/"
+registration_url: "https://www.rxjapan.jp/sus/tokyo/ja-jp.html"
 fee: "招待券持参で無料 / 当日5,000円"
 ---
 

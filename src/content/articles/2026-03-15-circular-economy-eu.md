@@ -1,7 +1,7 @@
 ---
 title: "EU循環経済パッケージが最終承認——2027年から「修理する権利」が本格化"
 vertical: "sustainability"
-source_url: "https://www.greenbiz.com/topic/circular-economy"
+source_url: "https://www.greenbiz.com/article/circular-economy-action-plan-progress"
 source_name: "GreenBiz"
 published_date: 2026-03-15
 status: "published"

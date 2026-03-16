@@ -7,9 +7,10 @@ interface Props {
   summary: string;
   tags: string[];
   source_name?: string;
+  source_url?: string;
 }
 
-const { id, title, vertical, published_date, summary, tags, source_name } = Astro.props;
+const { id, title, vertical, published_date, summary, tags, source_name, source_url } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const formattedDate = published_date.toLocaleDateString('ja-JP', {
@@ -23,7 +24,11 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
   <div class="card-meta">
     <a href={`${base}vertical/${vertical}`} class="vertical-tag">{vertical}</a>
     <time datetime={published_date.toISOString()}>{formattedDate}</time>
-    {source_name && <span class="source-badge">{source_name}</span>}
+    {source_name && source_url ? (
+      <a href={source_url} target="_blank" rel="noopener noreferrer" class="source-badge source-link">{source_name} ↗</a>
+    ) : source_name ? (
+      <span class="source-badge">{source_name}</span>
+    ) : null}
   </div>
   <h2 class="card-title">
     <a href={`${base}articles/${id}`}>{title}</a>
@@ -80,6 +85,17 @@ const formattedDate = published_date.toLocaleDateString('ja-JP', {
     padding: 0.1rem 0.4rem;
     border-radius: 3px;
     font-size: 0.65rem;
+  }
+
+  .source-link {
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .source-link:hover {
+    background: var(--color-accent);
+    color: #fff;
+    text-decoration: none;
   }
 
   .card-title {

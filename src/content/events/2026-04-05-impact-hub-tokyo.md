@@ -1,7 +1,7 @@
 ---
 title: "インパクト投資の最前線——実践者が語る「お金の流れ」の変え方"
 vertical: "zebra-bcorp"
-source_url: "https://hubtokyo.com/"
+source_url: "https://hubtokyo.com/events/"
 source_name: "Impact HUB Tokyo"
 published_date: 2026-03-14
 status: "published"

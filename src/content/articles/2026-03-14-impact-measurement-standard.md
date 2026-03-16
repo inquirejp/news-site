@@ -1,7 +1,7 @@
 ---
 title: "インパクト測定の国際標準化が加速——IMP+ACTが新フレームワークを公開"
 vertical: "zebra-bcorp"
-source_url: "https://impactfrontiers.org/"
+source_url: "https://impactfrontiers.org/norms/"
 source_name: "Impact Frontiers"
 published_date: 2026-03-14
 status: "published"

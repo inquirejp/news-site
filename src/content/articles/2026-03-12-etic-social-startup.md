@@ -1,7 +1,7 @@
 ---
 title: "ETIC.が社会起業家向けAIメンタリングプログラムを開始——技術と社会課題の接点を探る"
 vertical: "zebra-bcorp"
-source_url: "https://www.etic.or.jp/"
+source_url: "https://www.etic.or.jp/projects/"
 source_name: "ETIC."
 published_date: 2026-03-12
 status: "published"

@@ -1,7 +1,7 @@
 ---
 title: "greenz.jpが全国5拠点の「コミュニティハブ」構想を発表——地域とメディアの新しい関係"
 vertical: "sustainability"
-source_url: "https://greenz.jp/"
+source_url: "https://greenz.jp/main/features/"
 source_name: "greenz.jp"
 published_date: 2026-03-13
 status: "published"

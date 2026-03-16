@@ -1,7 +1,7 @@
 ---
 title: "社会起業塾イニシアティブ 2026年度エントリー開始——次世代の社会起業家を募集"
 vertical: "zebra-bcorp"
-source_url: "https://kigyojuku.etic.or.jp/"
+source_url: "https://kigyojuku.etic.or.jp/about/"
 source_name: "ETIC."
 published_date: 2026-03-10
 status: "published"
@@ -13,7 +13,7 @@ event_date: 2026-04-10
 venue_name: "ETIC.オフィス（渋谷）/ オンライン"
 venue_type: "hybrid"
 organizer: "NPO法人ETIC."
-registration_url: "https://kigyojuku.etic.or.jp/"
+registration_url: "https://kigyojuku.etic.or.jp/about/"
 fee: "無料"
 ---
 

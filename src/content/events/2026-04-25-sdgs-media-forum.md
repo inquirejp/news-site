@@ -1,7 +1,7 @@
 ---
 title: "SDGs×メディア フォーラム 2026——報道は社会変革の触媒になれるか"
 vertical: "sustainability"
-source_url: "https://www.sustainablebrands.jp/"
+source_url: "https://www.sustainablebrands.jp/event/"
 source_name: "Sustainable Brands Japan"
 published_date: 2026-03-11
 status: "published"
@@ -13,7 +13,7 @@ event_date: 2026-04-25
 venue_name: "六本木アカデミーヒルズ"
 venue_type: "offline"
 organizer: "Sustainable Brands Japan"
-registration_url: "https://www.sustainablebrands.jp/"
+registration_url: "https://www.sustainablebrands.jp/event/"
 fee: "メディア関係者無料 / 一般5,000円"
 ---
 
