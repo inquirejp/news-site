@@ -1,0 +1,25 @@
+name: バグ報告
+description: 表示崩れ、リンク切れ、ビルドエラーなどを報告する
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 何が起きているか
+      description: 期待する動作と実際の動作
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: どうすれば再現できるか
+      placeholder: |
+        1. トップページを開く
+        2. ニュースのリンクをクリック
+        3. 404ページが表示される
+  - type: input
+    id: url
+    attributes:
+      label: 該当ページURL
+      placeholder: https://inquirejp.github.io/news-site/...

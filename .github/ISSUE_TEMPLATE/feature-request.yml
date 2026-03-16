@@ -1,0 +1,21 @@
+name: 機能要望
+description: サイトの機能追加・改善を提案する
+labels: ["feature"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: やりたいこと
+      description: どんな機能が欲しいか、何を解決したいか
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景・動機
+      description: なぜこの機能が必要か
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 完了条件
+      description: どうなっていればOKか

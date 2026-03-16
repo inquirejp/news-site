@@ -1,43 +1,57 @@
-# Astro Starter Kit: Minimal
+# inquire.jp ニュースサイト
 
-```sh
-npm create astro@latest -- --template minimal
+[inquire.jp](https://inquire.jp/) の拡張ニュースサイト。ゼブラ企業・B Corp・サステナビリティ等の領域に特化したニュース・イベント・キュレーションを半自動的に収集・配信する。
+
+**本番サイト**: https://inquirejp.github.io/news-site/
+
+## アーキテクチャ
+
+- **フレームワーク**: [Astro](https://astro.build/) 6（静的サイト生成）
+- **コンテンツ管理**: Markdown + YAML frontmatter（Content Collections）
+- **ホスティング**: GitHub Pages
+- **CI/CD**: GitHub Actions（mainマージ時に自動デプロイ）
+- **コンテンツ生成**: Claude Code による半自動パイプライン
+
+## コンテンツ構成
+
+| 種別 | 説明 | 格納先 |
+|------|------|--------|
+| ニュース | AI生成＋編集レビュー済みの記事 | `src/content/articles/` |
+| イベント | 関連イベントの紹介 | `src/content/events/` |
+| キュレーション | 外部記事の選定＋編集コメント | `src/content/curations/` |
+
+### バーティカル（テーマ領域）
+
+| バーティカル | 定義ファイル |
+|-------------|-------------|
+| ゼブラ企業・B Corp | `src/content/verticals/zebra-bcorp.yaml` |
+| サステナビリティ | `src/content/verticals/sustainability.yaml` |
+
+## クイックスタート
+
+```bash
+# Node.js 22以上が必要
+npm install
+npm run dev
+# → http://localhost:4321/news-site/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ドキュメント
 
-## 🚀 Project Structure
+- [コントリビューションガイド](CONTRIBUTING.md) — 開発・コンテンツ追加の手順
+- [運用ガイド](docs/operations.md) — 日次パイプライン、手動操作、デプロイ
+- [自動化ガイド](docs/automation.md) — スケジュール設定、Slack連携
 
-Inside of your Astro project, you'll see the following folders and files:
+## 日次コンテンツパイプライン
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+7:00  ニュース・イベント収集（scripts/gather-news.md, gather-events.md）
+7:15  記事生成＋セルフレビュー（scripts/generate-articles.md）
+7:45  PR作成＋Slack通知（scripts/batch-review.md）
+ ↓    人間が承認
+承認後  PRマージ → 自動デプロイ
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 関連リポジトリ
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- inquire.jp 本体（WordPress） — 将来的に本ニュースサイトとの統合を予定

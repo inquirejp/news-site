@@ -1,0 +1,44 @@
+name: コンテンツ追加・修正
+description: 記事・イベント・キュレーションの追加や修正を依頼する
+labels: ["content"]
+body:
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: コンテンツ種別
+      options:
+        - ニュース記事
+        - イベント
+        - キュレーション
+    validations:
+      required: true
+  - type: dropdown
+    id: vertical
+    attributes:
+      label: バーティカル
+      options:
+        - zebra-bcorp
+        - sustainability
+        - その他
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 内容
+      description: 追加・修正したいコンテンツの詳細
+      placeholder: |
+        例: 以下の記事をニュースとして取り上げたい
+        URL: https://example.com/article
+        理由: B Corp認証に関する重要な動き
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: 優先度
+      options:
+        - 通常
+        - 急ぎ（当日中）
+    validations:
+      required: true
