@@ -1,30 +1,30 @@
 ---
-title: "インパクト投資の最前線——実践者が語る「お金の流れ」の変え方"
+title: "地域ベンチャー留学——大学生が地方企業で実践するインターンシップ"
 vertical: "zebra-bcorp"
-source_url: "https://hubtokyo.com/events/"
-source_name: "Impact HUB Tokyo"
+source_url: "https://etic.or.jp/news/2026/02/7044"
+source_name: "ETIC."
 published_date: 2026-03-14
 status: "published"
 quality_tier: "standard"
-tags: ["インパクト投資", "Impact HUB", "資金調達"]
-summary: "Impact HUB Tokyoにて、インパクト投資の実践者3名が登壇するトークイベントを開催。ゼブラ企業やソーシャルスタートアップへの投資事例を紹介する。"
-event_name: "Impact Investing Night Vol.12"
+tags: ["地域活性", "インターンシップ", "若者支援"]
+summary: "ETIC.の「地域ベンチャー留学」プログラムを通じて、大学生が地方企業で実践型インターンシップに参加。福井県坂井市での活動がメディアで紹介された。"
+event_name: "地域ベンチャー留学 2026春ターム 説明会"
 event_date: 2026-04-05
-venue_name: "Impact HUB Tokyo（目黒）"
-venue_type: "hybrid"
-organizer: "Impact HUB Tokyo"
-registration_url: "https://hubtokyo.com/events/"
-fee: "一般2,000円 / HUBメンバー無料"
+venue_name: "オンライン"
+venue_type: "online"
+organizer: "NPO法人ETIC."
+registration_url: "https://etic.or.jp/news/2026/02/7044"
+fee: "無料"
 ---
 
 ## イベントの概要
 
-Impact HUB Tokyoが定期開催しているインパクト投資をテーマにしたトークイベントシリーズの第12回。今回は「ゼブラ企業への投資——リターンとインパクトの両立」をテーマに、3名の実践者が登壇する。
+ETIC.が運営する「地域ベンチャー留学」は、大学生が地方の中小企業やソーシャルビジネスで実践型インターンシップを行うプログラムである。福井テレビ・福井新聞・県民福井など複数メディアで、福井県坂井市での活動の様子が紹介された。
 
-ゼブラ企業専門のファンドマネージャー、B Corp認証企業のCFO、そしてインパクト測定の専門家が、それぞれの立場から「善い投資」のあり方を語る。
+2026年春タームの説明会がオンラインで開催される。
 
 ## 注目のポイント
 
-- 日本で数少ないゼブラ企業専門ファンドの投資基準と実績
-- B Corp認証企業がインパクト投資家から資金調達した際のプロセス共有
-- インパクト測定の実務——何を測り、どう報告するか
+- 地方の中小企業で本格的な事業課題に取り組む実践型プログラム
+- 全国各地のパートナー企業とのマッチング
+- 参加学生のキャリア形成と地域活性化の両立

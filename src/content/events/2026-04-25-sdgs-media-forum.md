@@ -1,31 +1,29 @@
 ---
-title: "SDGs×メディア フォーラム 2026——報道は社会変革の触媒になれるか"
+title: "サステナブル・ブランド国際会議 2026——東京・丸の内で開催"
 vertical: "sustainability"
 source_url: "https://www.sustainablebrands.jp/event/"
 source_name: "Sustainable Brands Japan"
 published_date: 2026-03-11
 status: "published"
 quality_tier: "standard"
-tags: ["SDGs", "メディア", "ジャーナリズム"]
-summary: "Sustainable Brands Japanが主催するメディア関係者向けフォーラム。SDGsを報じるメディアの役割と課題、建設的ジャーナリズムの実践について議論する。"
-event_name: "SDGs×メディア フォーラム 2026"
+tags: ["サステナビリティ", "ブランド", "国際会議"]
+summary: "第10回サステナブル・ブランド国際会議が東京・丸の内で開催予定。企業のサステナビリティ戦略、情報開示、気候変動適応など最新テーマを議論する。"
+event_name: "サステナブル・ブランド国際会議 2026 東京・丸の内"
 event_date: 2026-04-25
-venue_name: "六本木アカデミーヒルズ"
+venue_name: "東京・丸の内エリア"
 venue_type: "offline"
 organizer: "Sustainable Brands Japan"
 registration_url: "https://www.sustainablebrands.jp/event/"
-fee: "メディア関係者無料 / 一般5,000円"
+fee: "有料（詳細は公式サイト参照）"
 ---
 
 ## イベントの概要
 
-Sustainable Brands Japan が主催する「SDGs×メディア フォーラム」は、サステナビリティ報道に携わるジャーナリスト、編集者、メディア関係者を対象としたフォーラムである。
-
-「建設的ジャーナリズム（Constructive Journalism）」の考え方を軸に、課題を報じるだけでなく解決策を提示するメディアのあり方について議論する。
+Sustainable Brands Japanが主催する国際会議の第10回が、2026年に東京・丸の内で開催される。サステナビリティ情報開示の義務化、気候変動への企業適応戦略、循環型ビジネスモデルなど、最新テーマについてグローバルな視点で議論が展開される。
 
 ## 注目のポイント
 
-- デンマーク発「建設的ジャーナリズム」の実践者による基調講演
-- 日本のサステナビリティ専門メディア編集長によるパネルディスカッション
-- AIを活用したSDGs関連ニュースのキュレーション事例紹介
-- メディア間連携によるインパクト最大化の取り組み
+- サステナビリティ開示義務化への企業の対応戦略
+- 気候変動に対する具体的な企業の適応事例（サントリー、花王等）
+- CEコマース（循環型ビジネス）の最新動向
+- グローバルなサステナブル・ブランドの経営者によるキーノート

@@ -1,12 +1,12 @@
 ---
-title: "日本のファッション企業5社が衣料品回収の共同プラットフォームを立ち上げ"
+title: "「成長至上主義」の魅力が薄れつつある——Trellis（旧GreenBiz）が問う企業成長の再定義"
 vertical: "sustainability"
-source_url: "https://prtimes.jp/main/html/searchrlp/company_id/0/page/1/?search_word=循環型ファッション"
-source_name: "PR TIMES"
+source_url: "https://trellis.net/article/growth-at-any-cost-is-losing-its-luster/"
+source_name: "Trellis（旧GreenBiz）"
 published_date: 2026-03-15
 status: "published"
-tags: ["循環経済", "ファッション", "リサイクル"]
-summary: "アパレル大手5社が使用済み衣料品の回収・リサイクルを共同で行うプラットフォーム「Re:Loop」を発表。業界横断の循環型モデルとして注目を集めている。"
-editorial_comment: "個社の取り組みから業界横断のインフラへ——。循環経済の実現には競合同士の協働が不可欠であり、この動きはアパレル以外の業界にも示唆を与えうる。"
-feed_source: "prtimes-rss"
+tags: ["企業成長", "サステナビリティ", "脱成長"]
+summary: "「何が何でも成長」という従来のビジネス哲学に対する批判と再評価が進んでいる。Trellis（旧GreenBiz）が成長至上主義の限界を論じる。"
+editorial_comment: "ゼブラ企業の思想が説くのは「脱成長」ではなく「成長の質の転換」である。この記事が示す「成長の再定義」は、ユニコーン一辺倒のスタートアップ文化への根本的な問いかけとして読める。利益と社会的インパクトの両立を目指す企業にとって、共感できる視座が多い。"
+feed_source: "trellis-rss"
 ---

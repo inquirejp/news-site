@@ -1,12 +1,12 @@
 ---
-title: "アジア最大のインパクト投資ファンドが500億円規模で組成完了"
+title: "中東の紛争がさらなる難民を生む——生計・サービス・インパクト投資の必要性"
 vertical: "zebra-bcorp"
-source_url: "https://impactalpha.com/the-brief-impact-investing-in-asia-pacific/"
-source_name: "Impact Alpha"
+source_url: "https://impactalpha.com/conflict-in-the-middle-east-creates-even-more-refugees-in-need-of-livelihoods-services-and-impact-investment/"
+source_name: "ImpactAlpha"
 published_date: 2026-03-14
 status: "published"
-tags: ["インパクト投資", "アジア", "ファンド"]
-summary: "シンガポール拠点のインパクト投資ファームが、アジア太平洋地域に特化した500億円規模のファンド組成を完了。気候テック、金融包摂、食料安全保障が重点分野。"
-editorial_comment: "インパクト投資の「実験期」から「本格化」への移行を象徴する規模感。日本のゼブラ企業にとっても、アジア圏での資金調達の選択肢が広がる可能性がある。"
+tags: ["インパクト投資", "難民", "社会課題"]
+summary: "中東の地政学的緊張が新たな難民を生み出し続けている。雇用、サービス、持続可能な開発への投資が急務であるとImpactAlphaが報じている。"
+editorial_comment: "インパクト投資が「あれば良い」から「なくてはならない」領域へ。紛争下の難民支援は、社会的投資のリターンが人道的価値と直結する典型例である。日本のインパクト投資家にとっても、グローバルな視点での投資機会を考える契機となる記事。"
 feed_source: "impactalpha-rss"
 ---
